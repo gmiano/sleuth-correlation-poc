@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+  <property name="LOG_DATEFORMAT_PATTERN" value="yyyy-MM-dd'T'HH:mm:ss.SSSSSXXX, UTC"/>
+  <property name="LOG_LEVEL_PATTERN" value="%-5level"/>
+  <property name="PID" value="[${springAppName:- },%X{X-B3-ParentSpanId:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-}]"/>
+  <property name="STDOUT_THRESHOLD_LEVEL" value="${e:-INFO}"/>
+
+  <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+  <logger name="com.gmiano" level="${STDOUT_THRESHOLD_LEVEL}"/>
+  <logger name="org.springframework" level="${STDOUT_THRESHOLD_LEVEL}"/>
+
+  <root level="WARN"/>
+</configuration>

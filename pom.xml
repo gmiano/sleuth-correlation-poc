@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <modules>
+    <module>block1</module>
+    <module>block2</module>
+    <module>block3</module>
+  </modules>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.4.RELEASE</version>
+  </parent>
+
+  <groupId>com.gmiano.poc.correlation</groupId>
+  <artifactId>correlationid</artifactId>
+  <packaging>pom</packaging>
+  <version>3.0.0.0-SNAPSHOT</version>
+  <name>Italian Electronic Invoicing</name>
+
+  <properties>
+    <java.version>11</java.version>
+
+    <!-- Spring -->
+    <spring.cloud.version>2.1.1.RELEASE</spring.cloud.version>
+    <spring.ws.version>3.0.4.RELEASE</spring.ws.version>
+    <spring.kafka.version>2.2.5.RELEASE</spring.kafka.version>
+
+    <lombok.version>1.18.6</lombok.version>
+    <micrometer.version>1.1.4</micrometer.version>
+
+    <!-- Test -->
+    <junit-jupiter.version>5.2.0</junit-jupiter.version>
+    <mockito-core.version>2.21.0</mockito-core.version>
+    <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+    <byte-buddy.version>1.8.13</byte-buddy.version>
+
+    <maven.jaxb2.plugin>0.14.0</maven.jaxb2.plugin>
+    <javax.activation>1.1.1</javax.activation>
+
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Spring -->
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-sleuth</artifactId>
+        <version>${spring.cloud.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+        <version>${spring.cloud.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-openfeign</artifactId>
+        <version>${spring.cloud.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.ws</groupId>
+        <artifactId>spring-ws-core</artifactId>
+        <version>${spring.ws.version}</version>
+      </dependency>
+      <!-- Test -->
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit-jupiter.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-params</artifactId>
+        <version>${junit-jupiter.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${mockito-core.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.kafka</groupId>
+        <artifactId>spring-kafka</artifactId>
+        <version>${spring.kafka.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jvnet.jaxb2.maven2</groupId>
+        <artifactId>maven-jaxb2-plugin</artifactId>
+        <version>${maven.jaxb2.plugin}</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+        <version>${javax.activation}</version>
+      </dependency>
+      <!-- Metrics -->
+      <dependency>
+        <groupId>io.micrometer</groupId>
+        <artifactId>micrometer-registry-prometheus</artifactId>
+        <version>${micrometer.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <!-- Application -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-aop</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+
+    <!-- Test -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.activation</groupId>
+      <artifactId>activation</artifactId>
+    </dependency>
+    <!-- Spring -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-sleuth</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+
+    <!-- Metering -->
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-registry-prometheus</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka</artifactId>
+    </dependency>
+  </dependencies>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <!-- select non-aggregate reports -->
+              <report>report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.spotify</groupId>
+          <artifactId>dockerfile-maven-plugin</artifactId>
+          <version>1.4.10</version>
+          <configuration>
+            <skip>true</skip>
+            <pullNewerImage>false</pullNewerImage>
+            <repository>${docker.image.prefix}/${project.artifactId}</repository>
+            <tag>${docker.image.tag}</tag>
+            <buildArgs>
+              <BASE_PREFIX>${docker.image.prefix}</BASE_PREFIX>
+              <BASE_TAG>${docker.image.tag}</BASE_TAG>
+              <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+              <SERVICE_PORT>8080</SERVICE_PORT>
+              <BASE_DOCKER_IMAGE_NAME>${docker.base.image.name}</BASE_DOCKER_IMAGE_NAME>
+              <BASE_DOCKER_IMAGE_VERSION>${docker.base.image.version}</BASE_DOCKER_IMAGE_VERSION>
+            </buildArgs>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>apidoc-generate</id>
+              <goals>
+                <goal>exec</goal>
+              </goals>
+              <configuration>
+                <executable>apidoc</executable>
+                <arguments>
+                  <argument>-i</argument>
+                  <argument>src/main/java</argument>
+                  <argument>-o</argument>
+                  <argument>target/api</argument>
+                </arguments>
+                <workingDirectory>${basedir}</workingDirectory>
+                <successCodes>
+                  <successCode>0</successCode>
+                </successCodes>
+              </configuration>
+            </execution>
+          </executions>
+          <configuration>
+            <skip>true</skip>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.2</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
+              <phase>prepare-package</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>

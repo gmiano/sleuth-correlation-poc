@@ -1,0 +1,9 @@
+spring:
+  kafka:
+    bootstrap-servers: minikube.local:32092
+
+server.port: 9091
+
+logging:
+  level:
+    org.springframework.cloud.sleuth: trace
